@@ -1,5 +1,8 @@
 package com.berryman.leaguetable.model;
 
+import org.apache.commons.lang3.builder.EqualsBuilder;
+import org.apache.commons.lang3.builder.HashCodeBuilder;
+
 /**
  * @author chris berryman.
  */
@@ -12,10 +15,10 @@ public class LeagueTableEntry {
     private int lost;
     private int goalsFor;
     private int goalsAgainst;
-    private int goalsDifference;
+    private int goalDifference;
     private int points;
 
-    public LeagueTableEntry(String teamName, int played, int won, int drawn, int lost, int goalsFor, int goalsAgainst, int goalsDifference, int points) {
+    public LeagueTableEntry(String teamName, int played, int won, int drawn, int lost, int goalsFor, int goalsAgainst, int goalDifference, int points) {
         this.teamName = teamName;
         this.played = played;
         this.won = won;
@@ -23,7 +26,7 @@ public class LeagueTableEntry {
         this.lost = lost;
         this.goalsFor = goalsFor;
         this.goalsAgainst = goalsAgainst;
-        this.goalsDifference = goalsDifference;
+        this.goalDifference = goalDifference;
         this.points = points;
     }
 
@@ -83,12 +86,12 @@ public class LeagueTableEntry {
         this.goalsAgainst = goalsAgainst;
     }
 
-    public int getGoalsDifference() {
-        return goalsDifference;
+    public int getGoalDifference() {
+        return goalDifference;
     }
 
-    public void setGoalsDifference(int goalsDifference) {
-        this.goalsDifference = goalsDifference;
+    public void setGoalDifference(int goalDifference) {
+        this.goalDifference = goalDifference;
     }
 
     public int getPoints() {
@@ -109,8 +112,44 @@ public class LeagueTableEntry {
                 ", lost=" + lost +
                 ", goalsFor=" + goalsFor +
                 ", goalsAgainst=" + goalsAgainst +
-                ", goalsDifference=" + goalsDifference +
+                ", goalDifference=" + goalDifference +
                 ", points=" + points +
                 '}';
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+
+        if (o == null || getClass() != o.getClass()) return false;
+
+        LeagueTableEntry entry = (LeagueTableEntry) o;
+
+        return new EqualsBuilder()
+                .append(played, entry.played)
+                .append(won, entry.won)
+                .append(drawn, entry.drawn)
+                .append(lost, entry.lost)
+                .append(goalsFor, entry.goalsFor)
+                .append(goalsAgainst, entry.goalsAgainst)
+                .append(goalDifference, entry.goalDifference)
+                .append(points, entry.points)
+                .append(teamName, entry.teamName)
+                .isEquals();
+    }
+
+    @Override
+    public int hashCode() {
+        return new HashCodeBuilder(17, 37)
+                .append(teamName)
+                .append(played)
+                .append(won)
+                .append(drawn)
+                .append(lost)
+                .append(goalsFor)
+                .append(goalsAgainst)
+                .append(goalDifference)
+                .append(points)
+                .toHashCode();
     }
 }
