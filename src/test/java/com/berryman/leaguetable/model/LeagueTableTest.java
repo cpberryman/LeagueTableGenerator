@@ -37,8 +37,5 @@ public class LeagueTableTest {
         assertThat(result.get(8), equalTo(new LeagueTableEntry("Hull City", 1, 0, 1, 0, 1, 1, 0, 1)));
         assertThat(result.get(9), equalTo(new LeagueTableEntry("Preston North End", 1, 0, 0, 1, 0, 3, 3, 0)));
 
-
-        result.forEach(r -> System.out.println(r.toString()));
-
     }
 }
